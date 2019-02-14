@@ -1,14 +1,12 @@
 package org.horaapps.leafpic.settings;
 
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import com.orhanobut.hawk.Hawk;
 
 import org.horaapps.leafpic.R;
 import org.horaapps.leafpic.util.preferences.Prefs;

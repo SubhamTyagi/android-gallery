@@ -11,10 +11,10 @@ import android.os.Environment;
 import android.provider.BaseColumns;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
-import android.support.v4.provider.DocumentFile;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
+import androidx.documentfile.provider.DocumentFile;
 import android.util.Log;
 
 import com.orhanobut.hawk.Hawk;

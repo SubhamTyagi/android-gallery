@@ -4,7 +4,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import org.horaapps.leafpic.R;
 

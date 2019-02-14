@@ -13,7 +13,7 @@
         android:background="@color/md_dark_appbar"
         android:windowActionBarOverlay="true" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/security_dialog_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                         android:textColor="@color/md_dark_background"
                         android:textSize="@dimen/medium_text" />
 
-                    <android.support.v7.widget.SwitchCompat
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/active_security_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                         android:textColor="@color/md_dark_background"
                         android:textSize="@dimen/medium_text" />
 
-                    <android.support.v7.widget.SwitchCompat
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/active_security_fingerprint_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
                             android:textColor="@color/md_dark_background"
                             android:textSize="@dimen/medium_text" />
 
-                        <android.support.v7.widget.SwitchCompat
+                        <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/security_body_apply_hidden_switch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -227,7 +227,7 @@
                             android:textColor="@color/md_dark_background"
                             android:textSize="@dimen/medium_text" />
 
-                        <android.support.v7.widget.SwitchCompat
+                        <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/security_body_apply_delete_switch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -241,5 +241,5 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

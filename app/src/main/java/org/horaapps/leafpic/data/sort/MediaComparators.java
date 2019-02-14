@@ -1,6 +1,6 @@
 package org.horaapps.leafpic.data.sort;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.horaapps.leafpic.data.AlbumSettings;
 import org.horaapps.leafpic.data.Media;

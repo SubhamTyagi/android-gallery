@@ -2,7 +2,7 @@ package org.horaapps.leafpic.util;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Utility class for accessing Android device-specific information

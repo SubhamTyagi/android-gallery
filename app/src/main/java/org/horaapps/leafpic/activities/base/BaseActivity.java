@@ -3,7 +3,7 @@ package org.horaapps.leafpic.activities.base;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.CallSuper;
+import androidx.annotation.CallSuper;
 
 import org.horaapps.leafpic.util.preferences.Prefs;
 import org.horaapps.liz.ThemedActivity;

@@ -1,6 +1,6 @@
 package org.horaapps.leafpic.timeline.data;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 /**
  * Interface to define that this item is capable of being displayed on timeline

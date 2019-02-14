@@ -3,7 +3,7 @@ package org.horaapps.leafpic.activities.base;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.widget.Toast;
 
 import org.horaapps.leafpic.R;

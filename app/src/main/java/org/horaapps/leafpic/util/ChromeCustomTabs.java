@@ -3,11 +3,11 @@ package org.horaapps.leafpic.util;
 import android.content.ComponentName;
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.customtabs.CustomTabsClient;
-import android.support.customtabs.CustomTabsIntent;
-import android.support.customtabs.CustomTabsServiceConnection;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsClient;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.browser.customtabs.CustomTabsServiceConnection;
 
 import org.horaapps.liz.ThemeHelper;
 

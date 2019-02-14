@@ -2,22 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-repositories {
-    maven { url "https://dl.bintray.com/dasar/maven" }
-    maven { url "https://s3.amazonaws.com/repo.commonsware.com" }
-    maven { url "https://jitpack.io" }
-    mavenCentral()
-}
-
 
 android {
-    compileSdkVersion project.sdkVersion
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "org.horaapps.leafpic"
+        applicationId "org.horaapps.leafpic2"
         minSdkVersion 19
-        targetSdkVersion project.sdkVersion
-        versionName "v0.7-alpha-2"
-        versionCode 16
+        targetSdkVersion 28
+        versionName "v0.1-alpha-1"
+        versionCode 101
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
@@ -42,16 +35,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    signingConfigs {
-        release
-    }
-
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "app_name", "LeafPic"
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
         }
 
         debug {
@@ -60,33 +49,22 @@ android {
         }
     }
 
-    flavorDimensions "default"
-
-    productFlavors {
-        noGPlay {
-            dimension "default"
-        }
-
-        withGPlay {
-            dimension "default"
-        }
-    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //exifInterface
-    implementation "com.android.support:exifinterface:$supportVersion"
-
-    // google & support
-    implementation "com.android.support:appcompat-v7:$supportVersion"
-    implementation "com.android.support:cardview-v7:$supportVersion"
-    implementation "com.android.support:recyclerview-v7:$supportVersion"
-    implementation "com.android.support:design:$supportVersion"
-    implementation "com.android.support:palette-v7:$supportVersion"
-    implementation "com.android.support:customtabs:$supportVersion"
-    implementation "com.android.support:support-v4:$supportVersion"
+    implementation "androidx.exifinterface:exifinterface:1.0.0"
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "com.google.android.material:material:1.0.0"
+    implementation "androidx.palette:palette:1.0.0"
+    implementation "androidx.browser:browser:1.0.0"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     //exo-player
     implementation 'com.google.android.exoplayer:exoplayer-core:2.6.0'
@@ -113,7 +91,7 @@ dependencies {
 //    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
 
     // icons
-    implementation 'com.mikepenz:iconics-core:3.0.3@aar'
+    implementation 'com.mikepenz:iconics-core:3.0.4@aar'
     implementation "com.mikepenz:iconics-views:3.0.3@aar"
     implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
     implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
@@ -129,36 +107,13 @@ dependencies {
     implementation 'com.github.HoraApps:Liz:-SNAPSHOT'
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
 
-
     // debug Only
     //debugCompile project(':inappstoragereader')
     implementation 'cat.ereza:customactivityoncrash:2.2.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:multidex:1.0.3'
-
     // TODO check them out
     implementation 'com.turingtechnologies.materialscrollbar:lib:10.0.3'
     implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
-}
-
-Properties props = new Properties()
-def propFile = new File('signing.properties')
-if (propFile.canRead()) {
-    props.load(new FileInputStream(propFile))
-
-    if (props != null && props.containsKey('STORE_FILE') && props.containsKey('KEY_ALIAS') && props.containsKey('PASSWORD')) {
-        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
-        android.signingConfigs.release.storePassword = props['PASSWORD']
-        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
-        android.signingConfigs.release.keyPassword = props['PASSWORD']
-    } else {
-        println 'signing.properties found but some entries are missing'
-        android.buildTypes.release.signingConfig = null
-    }
-} else {
-    println 'signing.properties not found'
-    android.buildTypes.release.signingConfig = null
 }

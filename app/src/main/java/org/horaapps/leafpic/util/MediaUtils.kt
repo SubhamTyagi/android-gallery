@@ -5,7 +5,7 @@ package org.horaapps.leafpic.util
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import android.widget.Toast
 import org.horaapps.leafpic.R
 import org.horaapps.leafpic.data.Media
@@ -53,7 +53,7 @@ fun shareMedia(context: Context, mediaList: List<Media>) {
     context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_to)))
 }
 
-fun deleteMedia(context: Context, mediaList: List<Media>, fragmentManager: FragmentManager, deleteListener: ProgressBottomSheet.Listener<Media>) {
+fun deleteMedia(context: Context, mediaList: List<Media>, fragmentManager: androidx.fragment.app.FragmentManager, deleteListener: ProgressBottomSheet.Listener<Media>) {
     val sources = ArrayList<io.reactivex.Observable<Media>>(mediaList.size)
     for (media in mediaList)
         sources.add(MediaHelper.deleteMedia(context.applicationContext, media))

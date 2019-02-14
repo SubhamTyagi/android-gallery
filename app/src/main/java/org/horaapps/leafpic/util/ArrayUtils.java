@@ -1,6 +1,6 @@
 package org.horaapps.leafpic.util;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * All kinds of Array helpers belong here

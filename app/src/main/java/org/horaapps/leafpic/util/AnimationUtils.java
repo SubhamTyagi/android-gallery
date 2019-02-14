@@ -1,7 +1,7 @@
 package org.horaapps.leafpic.util;
 
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.horaapps.leafpic.util.preferences.Prefs;
 

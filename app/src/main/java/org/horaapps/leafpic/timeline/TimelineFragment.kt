@@ -3,8 +3,8 @@ package org.horaapps.leafpic.timeline
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.annotation.IdRes
-import android.support.v7.widget.GridLayoutManager
+import androidx.annotation.IdRes
+import androidx.recyclerview.widget.GridLayoutManager
 import android.view.*
 import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -54,7 +54,7 @@ class TimelineFragment : BaseMediaGridFragment(), ActionsListener {
 
     private lateinit var timelineAdapter: TimelineAdapter
     private lateinit var timelineListener: MediaClickListener
-    private lateinit var gridLayoutManager: GridLayoutManager
+    private lateinit var gridLayoutManager: androidx.recyclerview.widget.GridLayoutManager
 
     private lateinit var contentAlbum: Album
 
@@ -241,7 +241,7 @@ class TimelineFragment : BaseMediaGridFragment(), ActionsListener {
 
     private fun setupRecyclerView() {
         val decorator = TimelineAdapter.TimelineItemDecorator(context!!, R.dimen.timeline_decorator_spacing)
-        gridLayoutManager = GridLayoutManager(context, timelineGridSize)
+        gridLayoutManager = androidx.recyclerview.widget.GridLayoutManager(context, timelineGridSize)
         timeline_items.layoutManager = gridLayoutManager
         timeline_items.addItemDecoration(decorator)
 

@@ -2,7 +2,7 @@ package org.horaapps.leafpic.util.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Android's SharedPreferences for storing key-value pairs.

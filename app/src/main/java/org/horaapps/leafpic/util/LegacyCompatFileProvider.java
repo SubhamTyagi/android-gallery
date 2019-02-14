@@ -3,7 +3,7 @@ package org.horaapps.leafpic.util;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 import com.commonsware.cwac.provider.LegacyCompatCursorWrapper;
 

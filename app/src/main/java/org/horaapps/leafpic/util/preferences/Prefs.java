@@ -1,7 +1,7 @@
 package org.horaapps.leafpic.util.preferences;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.horaapps.leafpic.CardViewStyle;
 import org.horaapps.leafpic.data.sort.SortingMode;

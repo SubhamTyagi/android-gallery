@@ -1,21 +1,21 @@
+
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/leafpic/localized.svg)](https://crowdin.com/project/leafpic)
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.me/HoraApps)
 
-**PSA**: We are moving on [gitlab](https://gitlab.com/HoraApps/LeafPic), the repo on Github will remain as a mirror. Don't submit PR on gihub. 
-
-# LeafPic
+### my objective for app
+ my objective are as follow 
+- provide functionality to hide photos with AES encryption,and a fingerprint authentication.(P1)
+- provide OCR for photos text.(P2)
+- provide cloud(user owned/or user choice) backup functionality.(P3)
+- provide some utility such as filters,collage,videos & photos editing(P3)
+ 
+# LeafPic 2
 <img src="https://gitlab.com/HoraApps/LeafPic/raw/abdf97052596380b8d4b838c6ab4a7c1bf854522/app/src/main/res/drawable/leaf_pic.png" align="left" width="200" hspace="10" vspace="10">
 LeafPic is a fluid, material-designed alternative gallery, it also is ad-free and open source under GPLv3 license. It doesn't miss any of the main features of a stock gallery, and we also have plans to add more useful features.<br/>
-
 <div style="display:flex;" >
 <a href="https://f-droid.org/app/org.horaapps.leafpic">
     <img src="https://f-droid.org/badge/get-it-on.png"
          alt="Get it on F-Droid" height="80">
-</a>
-<a href="https://play.google.com/store/apps/details?id=org.horaapps.leafpic">
-    <img alt="Get it on Google Play"
-        height="80"
-        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
 </a>
 </div>
 </br></br>

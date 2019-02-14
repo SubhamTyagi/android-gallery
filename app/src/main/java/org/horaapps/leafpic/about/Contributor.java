@@ -1,6 +1,6 @@
 package org.horaapps.leafpic.about;
 
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 
 import java.util.ArrayList;
 

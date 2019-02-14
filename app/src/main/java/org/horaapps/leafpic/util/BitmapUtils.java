@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
-import android.support.media.ExifInterface;
+import androidx.exifinterface.media.ExifInterface;
 
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 

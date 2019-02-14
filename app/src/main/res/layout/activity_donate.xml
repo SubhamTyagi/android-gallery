@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/donate_header_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,10 +79,10 @@
                         android:textSize="@dimen/medium_text" />
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <!--DONATE GOOGLE PLAY-->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/donate_googleplay_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -160,10 +160,10 @@
                         android:clickable="true" />
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <!--DONATE PAYPAL-->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/donate_paypal_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -229,10 +229,10 @@
                         android:clickable="true"/>
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <!--DONATE BITCOIN -->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/donate_bitcoin_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -287,7 +287,7 @@
                         android:clickable="true" />
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -11,22 +11,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
@@ -55,6 +46,15 @@ import org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -63,7 +63,6 @@ import static org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer.Item
 import static org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer.NAVIGATION_ITEM_ABOUT;
 import static org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer.NAVIGATION_ITEM_ALL_ALBUMS;
 import static org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer.NAVIGATION_ITEM_ALL_MEDIA;
-import static org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer.NAVIGATION_ITEM_DONATE;
 import static org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer.NAVIGATION_ITEM_HIDDEN_FOLDERS;
 import static org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer.NAVIGATION_ITEM_SETTINGS;
 import static org.horaapps.leafpic.views.navigation_drawer.NavigationDrawer.NAVIGATION_ITEM_TIMELINE;
@@ -80,27 +79,28 @@ public class MainActivity extends SharedMediaActivity implements
     public static final String ARGS_PICK_MODE = "pick_mode";
 
     private static final String SAVE_FRAGMENT_MODE = "fragment_mode";
+    @BindView(R.id.fab_camera)
+    FloatingActionButton fab;
+    //??
+    @BindView(R.id.drawer_layout)
+    DrawerLayout navigationDrawer;
+    //???
+    @BindView(R.id.home_navigation_drawer)
+    NavigationDrawer navigationDrawerView;
 
-    public @interface FragmentMode {
-        int MODE_ALBUMS = 1001;
-        int MODE_MEDIA = 1002;
-        int MODE_TIMELINE = 1003;
-    }
-
-    @BindView(R.id.fab_camera) FloatingActionButton fab;
-    @BindView(R.id.drawer_layout) DrawerLayout navigationDrawer;
-    @BindView(R.id.home_navigation_drawer) NavigationDrawer navigationDrawerView;
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.coordinator_main_layout) CoordinatorLayout mainLayout;
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.coordinator_main_layout)
+    CoordinatorLayout mainLayout;
     private AlbumsFragment albumsFragment;
     private RvMediaFragment rvMediaFragment;
     private TimelineFragment timelineFragment;
-
+    //??
     private boolean pickMode = false;
-    private Unbinder unbinder;
 
-    @FragmentMode private int fragmentMode;
+    private Unbinder unbinder;
+    @FragmentMode
+    private int fragmentMode;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,7 +113,7 @@ public class MainActivity extends SharedMediaActivity implements
 
         if (savedInstanceState == null) {
             fragmentMode = FragmentMode.MODE_ALBUMS;
-            initAlbumsFragment();
+            initAlbumsFragment();//??
             setContentFragment();
 
             return;
@@ -138,6 +138,7 @@ public class MainActivity extends SharedMediaActivity implements
         }
     }
 
+    //
     private void setContentFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -146,6 +147,7 @@ public class MainActivity extends SharedMediaActivity implements
                 .commit();
     }
 
+    //
     private void initAlbumsFragment() {
         unreferenceFragments();
         albumsFragment = new AlbumsFragment();
@@ -157,9 +159,11 @@ public class MainActivity extends SharedMediaActivity implements
         super.onSaveInstanceState(outState);
     }
 
+    //
     private void restoreState(@NonNull Bundle savedInstance) {
         fragmentMode = savedInstance.getInt(SAVE_FRAGMENT_MODE, FragmentMode.MODE_ALBUMS);
     }
+
 
     private void displayAlbums(boolean hidden) {
         fragmentMode = FragmentMode.MODE_ALBUMS;
@@ -200,6 +204,7 @@ public class MainActivity extends SharedMediaActivity implements
         setupUiForTimeline();
     }
 
+    //
     @Override
     protected void onDestroy() {
         unbinder.unbind();
@@ -264,10 +269,10 @@ public class MainActivity extends SharedMediaActivity implements
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (DeviceUtils.isPortrait(getResources())) {
-            fab.setVisibility(View.VISIBLE);
+            fab.show();
             fab.animate().translationY(fab.getHeight() * 2).start();
         } else
-            fab.setVisibility(View.GONE);
+            fab.hide();
     }
 
     public void goBackToAlbums() {
@@ -368,7 +373,11 @@ public class MainActivity extends SharedMediaActivity implements
         setNavBarColor();
 
         fab.setBackgroundTintList(ColorStateList.valueOf(getAccentColor()));
-        fab.setVisibility(Hawk.get(getString(R.string.preference_show_fab), false) ? View.VISIBLE : View.GONE);
+        if (Hawk.get(getString(R.string.preference_show_fab), false))
+            fab.show();
+        else
+            fab.hide();
+
         mainLayout.setBackgroundColor(getBackgroundColor());
 
 //        setScrollViewColor(navigationDrawerView);
@@ -423,7 +432,9 @@ public class MainActivity extends SharedMediaActivity implements
         navigationDrawerView.refresh();
     }
 
-    /**region MENU */
+    /**
+     * region MENU
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -585,9 +596,6 @@ public class MainActivity extends SharedMediaActivity implements
                 Toast.makeText(MainActivity.this, "Coming Soon!", Toast.LENGTH_SHORT).show();
                 break;
 
-            case NAVIGATION_ITEM_DONATE:
-                DonateActivity.startActivity(this);
-                break;
 
             case NavigationDrawer.NAVIGATION_ITEM_AFFIX:
                 Intent i = new Intent(getBaseContext(), AffixActivity.class);
@@ -631,5 +639,11 @@ public class MainActivity extends SharedMediaActivity implements
     private void setupUiForTimeline() {
         lockNavigationDrawer();
         updateToolbar(getString(R.string.timeline_toolbar_title), GoogleMaterial.Icon.gmd_arrow_back, v -> goBackToAlbums());
+    }
+
+    public @interface FragmentMode {
+        int MODE_ALBUMS = 1001;
+        int MODE_MEDIA = 1002;
+        int MODE_TIMELINE = 1003;
     }
 }

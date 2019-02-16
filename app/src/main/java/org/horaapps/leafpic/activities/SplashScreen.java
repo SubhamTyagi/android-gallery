@@ -10,9 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -26,6 +24,11 @@ import org.horaapps.leafpic.util.StringUtils;
 import org.horaapps.liz.ColorPalette;
 
 import java.io.File;
+import java.io.IOException;
+
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by dnld on 01/04/16.
@@ -33,20 +36,18 @@ import java.io.File;
  */
 public class SplashScreen extends SharedMediaActivity {
 
-    private final String TAG = SplashScreen.class.getSimpleName();
-
-    private final int EXTERNAL_STORAGE_PERMISSIONS = 12;
-    private static final int PICK_MEDIA_REQUEST = 44;
-
+    public final static String ACTION_OPEN_ALBUM = "org.horaapps.leafpic.OPEN_ALBUM";
     final static String CONTENT = "content";
-
     final static int ALBUMS_PREFETCHED = 2376;
     final static int PHOTOS_PREFETCHED = 2567;
     final static int ALBUMS_BACKUP = 1312;
-    private boolean pickMode = false;
-    public final static String ACTION_OPEN_ALBUM = "org.horaapps.leafpic.OPEN_ALBUM";
+    private static final int PICK_MEDIA_REQUEST = 44;
+    public static String encryptedFolderName = Environment.getExternalStorageDirectory() + "/.EncryptedAlbums/";
+    private final String TAG = SplashScreen.class.getSimpleName();
+    private final int EXTERNAL_STORAGE_PERMISSIONS = 12;
 
     //private Album tmpAlbum;
+    private boolean pickMode = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,6 @@ public class SplashScreen extends SharedMediaActivity {
                     if (ab != null) {
                         File dir = new File(ab);
                         //tmpAlbum = new Album(getApplicationContext(), dir.getAbsolutePath(), data.getInt("albumId", -1), dir.getName(), -1);
-                        // TODO: 4/10/17 handle
                         start();
                     }
                 } else StringUtils.showToast(getApplicationContext(), "Album not found");
@@ -95,6 +95,23 @@ public class SplashScreen extends SharedMediaActivity {
 
     private void start() {
         Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+
+
+        /**
+         *create a folder which have encrypted albums;
+         */
+        // File directory = new File(encryptedFolderName);
+        //if (!directory.exists())
+        //    directory.mkdir();
+        File encryptedFiles = new File(encryptedFolderName, ".encrypted");
+        if (!encryptedFiles.exists()) {
+            try {
+                encryptedFiles.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         if (pickMode) {
             intent.putExtra(MainActivity.ARGS_PICK_MODE, true);
@@ -133,7 +150,8 @@ public class SplashScreen extends SharedMediaActivity {
                     finish();
                 }
                 break;
-            default: super.onActivityResult(requestCode, resultCode, data);
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
         }
     }
 

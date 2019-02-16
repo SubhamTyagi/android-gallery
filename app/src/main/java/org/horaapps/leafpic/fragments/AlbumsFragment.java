@@ -1,18 +1,12 @@
 package org.horaapps.leafpic.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,6 +44,13 @@ import org.horaapps.liz.ThemedActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -72,7 +73,7 @@ public class AlbumsFragment extends BaseMediaGridFragment {
     private AlbumClickListener listener;
 
     private boolean hidden = false;
-    ArrayList<String> excuded = new ArrayList<>();
+    ArrayList<String> excluded = new ArrayList<>();
 
     public interface AlbumClickListener {
         void onAlbumClick(Album album);
@@ -82,7 +83,7 @@ public class AlbumsFragment extends BaseMediaGridFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        excuded = db().getExcludedFolders(getContext());
+        excluded = db().getExcludedFolders(getContext());
     }
 
     @Override
@@ -104,10 +105,12 @@ public class AlbumsFragment extends BaseMediaGridFragment {
         displayAlbums();
     }
 
+    @SuppressLint("CheckResult")
     private void displayAlbums() {
         adapter.clear();
         SQLiteDatabase db = HandlingAlbums.getInstance(getContext().getApplicationContext()).getReadableDatabase();
-        CPHelper.getAlbums(getContext(), hidden, excuded, sortingMode(), sortingOrder())
+
+        CPHelper.getAlbums(getContext(), hidden, excluded, sortingMode(), sortingOrder())
                 .subscribeOn(Schedulers.io())
                 .map(album -> album.withSettings(HandlingAlbums.getSettings(db, album.getPath())))
                 .observeOn(AndroidSchedulers.mainThread())
@@ -317,7 +320,7 @@ public class AlbumsFragment extends BaseMediaGridFragment {
                     hideDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.exclude).toUpperCase(), (dialog, which) -> {
                         for (Album album : adapter.getSelectedAlbums()) {
                             db().excludeAlbum(album.getPath());
-                            excuded.add(album.getPath());
+                            excluded.add(album.getPath());
                         }
                         adapter.removeSelectedAlbums();
                     });
@@ -392,14 +395,14 @@ public class AlbumsFragment extends BaseMediaGridFragment {
                     if (adapter.getSelectedCount() > 1) {
                         for (Album album : adapter.getSelectedAlbums()) {
                             db().excludeAlbum(album.getPath());
-                            excuded.add(album.getPath());
+                            excluded.add(album.getPath());
                         }
                         adapter.removeSelectedAlbums();
 
                     } else {
                         String path = spinnerParents.getSelectedItem().toString();
                         db().excludeAlbum(path);
-                        excuded.add(path);
+                        excluded.add(path);
                         adapter.removeAlbumsThatStartsWith(path);
                         adapter.forceSelectedCount(0);
                     }
